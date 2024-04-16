@@ -1,5 +1,14 @@
 from django.shortcuts import render, HttpResponse
-
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from Home.models import Task
 # Create your views here.
-def TaskList(request):
-    return HttpResponse("this is my app")
+
+class TaskList(ListView):
+    model = Task
+    context_object_name = 'tasks'
+
+class TaskDetail(DetailView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'Home/task.html'
